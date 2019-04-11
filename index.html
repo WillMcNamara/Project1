@@ -4,11 +4,54 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Group project</title>
+
+    <!-- mobile view -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- external style sheet -->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css">
+    <!-- Javascript external file -->
     <script src="assets/javascript.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+    <!-- J query -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+
 <body>
-    
+    <button id="hi">High Five me!</button>
+    <h1>Someone has clicked me<br>
+        <span id="click-here"></span>times we high fived! Pauly D is happy!</h1>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAP93iIpKW4fMEWVn5izECStvD_q0Lx6e4",
+            authDomain: "newproject-c5f98.firebaseapp.com",
+            databaseURL: "https://newproject-c5f98.firebaseio.com",
+            projectId: "newproject-c5f98",
+            storageBucket: "newproject-c5f98.appspot.com",
+            messagingSenderId: "265871115288"
+        };
+        firebase.initializeApp(config);
+
+        var database = firebase.database();
+        var clickCounter = 0;
+
+        $("#hi").on("click", function () {
+            clickCounter++;
+            database.ref().set({
+                clickCount: clickCounter
+            });
+        });
+
+        // Main Process
+        database.ref().on("value", function (snapshot) {
+            console.log(snapshot.val());
+            clickCounter = snapshot.val().clickCount;
+            $("#click-here").text(snapshot.val().clickCount);
+        }, function (errorObject) {
+            console.log("The read failed:" + errorObject.code)
+        });
+    </script>
 </body>
 </html>
