@@ -4,7 +4,7 @@ $("#search-submitBtn").on("click",function(){
 });
 
 
-$("#restaurant").on("click",function(){
+$("#restaurant-submitBtn").on("click",function(){
     event.preventDefault();
     
 });
