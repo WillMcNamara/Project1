@@ -13,20 +13,55 @@
     <div class="jumbotron text-center">
         <h2>JRZCHORE</h2>
     </div>
-    <div class="container bg-light">
-        <div class="row">
-            <div class="col-md-">
-                <p>hi</p>
+    <div class="container bg-light ">
+        <div class="row bg-light py-3">
+            <div class="col-md-5 ">
+            <!-- Input form for Destination -->
+                <form id="Distination-searching-form">
+                    <div class="form-group ">
+                        <label for="text" class="sr-only">search destination</label>
+                        <input type="text" class="form-control" id="traffic-map" placeholder="destination search">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2 float-right" id ="search-submitBtn">submit</button>
+                </form>
             </div>
+
+                <div class="col-md-7">
+                        <!-- Traffic map will show up here-->
+                        <div id="map"></div>
+                </div> 
         </div>
+
+        <!-- Location will show up here -->
+        <div class="row">
+            <div id="location">Location</div>
+        </div>
+
+        <div class="row bg-light py-3">
+            <div class="col-md-7">
+                <!-- Traffic map will show up here-->
+                <div id="restaurant-display"></div>
+            </div> 
+            <div class="col-md-5 ">
+            <!-- Input form for Destination -->
+                <form id="Distination-searching-form">
+                    <div class="form-group ">
+                        <label for="text" class="sr-only">search destination</label>
+                        <input type="text" class="form-control" id="restaurant-input" placeholder="Restaurant search">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2 float-right" id ="restaurant-submitBtn">submit</button>
+                </form>
+            </div>
+            </div>
+
+            <div class="row">
+                    <div id="restaurant">restaurant</div>
+                </div>
+
+
+
+
     </div>
-
-
-
-
-
-
-
 
 <footer class="footer mt-auto py-3">
         <span class="text-muted">&#169; 2019 Team Situationz</span>
