@@ -38,7 +38,7 @@
                 $("#locations").append("<img>" + location + "</img>")
 
         }
-        function renderImage(team) {
+        function renderImage(location) {
             var queryURL = "apidojo-booking-v1.p.rapidapi.com" + location + "&api_key=dc6zaTOxFJmzC&limit=10";
             $.ajax({
                     url: queryURL,
