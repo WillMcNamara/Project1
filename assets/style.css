@@ -23,10 +23,10 @@ body{
     background-color: lightgray;
     text-align: center;
 }
+
 .jumbotron{
     font-family: 'Francois One', sans-serif;
-    padding: 30px;
-   
+    padding: 30px; 
 }
 
 .img-size{
