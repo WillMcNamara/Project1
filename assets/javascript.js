@@ -1,7 +1,7 @@
 // Rickbranch
 
 
-{/* <form id="location-form">
+/* <form id="location-form">
     <label for="location-input">Enter Your Destination!</label>
     <input type="text" id="location-input"><br>
 
@@ -60,24 +60,24 @@ method: "GET"
                 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
                     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-                <script src="assets/javascript.js"></script> */}
+                <script src="assets/javascript.js"></script> */
 
 //Will branch
 function myMap() {
-    var myLatlng = new google.maps.LatLng(40.0583, -74.4057);
-    var mapOptions = {
-      zoom: 10,
-      center: myLatlng
-    };
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  var myLatlng = new google.maps.LatLng(40.0583, -74.4057);
+  var mapOptions = {
+    zoom: 10,
+    center: myLatlng
+  };
+  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        title:"New Jersey"
-    });
-    
-    marker.setMap(map);
-    }
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      title:"New Jersey"
+  });
+  
+  marker.setMap(map);
+  }
 $(document).ready(function(){
 
 //on click function for searching directions
@@ -188,4 +188,3 @@ $(document).ready(function(){
 
   })
 })
-
