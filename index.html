@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
    
 </head>
+
 <body>
     <header>
         <div class="jumbotron text-center bg-danger">
@@ -74,12 +75,49 @@
             </div>
         </div>
     </div>
+ 
+    <img src= "https://cdn.shopify.com/s/files/1/0023/6696/3812/products/Sticker_250x.jpg?v=1542588064" id="hi" width="150px" height= "200px">
+    <h1>Hit Pauly D</h1>
+    <h2>Ouch! I have been hit<span id="click-here"></span>times</h2>
 
 <footer class="footer mt-auto py-3 bg-danger">
         <span class="text-white">&#169; 2019 Team Situationz</span>
+        
 </footer>
 <script src="assets/javascript.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
 
+   
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAP93iIpKW4fMEWVn5izECStvD_q0Lx6e4",
+            authDomain: "newproject-c5f98.firebaseapp.com",
+            databaseURL: "https://newproject-c5f98.firebaseio.com",
+            projectId: "newproject-c5f98",
+            storageBucket: "newproject-c5f98.appspot.com",
+            messagingSenderId: "265871115288"
+        };
+        firebase.initializeApp(config);
+
+        var database = firebase.database();
+        var clickCounter = 0;
+
+        $("#hi").on("click", function () {
+            clickCounter++;
+            database.ref().set({
+                clickCount: clickCounter
+            });
+        });
+
+        // Main Process
+        database.ref().on("value", function (snapshot) {
+            console.log(snapshot.val());
+            clickCounter = snapshot.val().clickCount;
+            $("#click-here").text(snapshot.val().clickCount);
+        }, function (errorObject) {
+            console.log("The read failed:" + errorObject.code)
+        });
+    </script>
 </body>
 </html>
