@@ -1,7 +1,9 @@
 // Rickbranch
 
 
-{/* <form id="location-form">
+
+/* <form id="location-form">
+
     <label for="location-input">Enter Your Destination!</label>
     <input type="text" id="location-input"><br>
 
