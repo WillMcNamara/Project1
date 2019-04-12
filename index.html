@@ -6,15 +6,17 @@
     <title>JRZCHORE project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css">
     <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
    
 </head>
 <body>
-    <!-- header area -->
-    <div class="jumbotron text-center">
-        <h2>JRZCHORE</h2>
-    </div>
+    <header>
+        <div class="jumbotron text-center bg-danger">
+            <h1 class="display-3 text-white">JRZCHORE</h1>
+        </div>
+    </header>
     <!--End header area -->
 
 
@@ -29,6 +31,11 @@
                         <button class="btn btn-outline-secondary bg-light" type="button" id="destination-searchBtn"><ion-icon name="search"></ion-icon></button>
                     </div>
                 </div>
+
+         <!-- Location result will show up here -->
+                <div class="row">
+                    <div id="location"></div>
+                </div>
                
             </div>
 
@@ -40,17 +47,20 @@
             </div> 
         </div>
 
-        <!-- Location will show up here -->
-        <div class="row">
-            <div id="location"></div>
-        </div>
+       
 
         <div class="row ">
             <div class="col-md-7">
-                <!-- Traffic map will show up here-->
+            <!-- Traffic map will show up here-->
                 <div id="restaurant-display">
                         <img src="assets/images/yelp.png" alt="yelp" class="img-size">
                 </div>
+
+            <!-- Restaurant will show up here -->
+                <div class="row">
+                        <div id="restaurant"></div>
+                </div>
+
             </div> 
 
             <!-- Restaurant search input -->
@@ -60,19 +70,13 @@
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary bg-light" type="button" id="restaurant-searchBtn"><ion-icon name="search"></ion-icon></button>   
                     </div>
-                </div>
-                
-            </div>
-
-            <!-- Restaurant will show up here -->
-            <div class="row">
-                    <div id="restaurant"></div>
+                </div> 
             </div>
         </div>
     </div>
 
-<footer class="footer mt-auto py-3">
-        <span class="text-muted">&#169; 2019 Team Situationz</span>
+<footer class="footer mt-auto py-3 bg-danger">
+        <span class="text-white">&#169; 2019 Team Situationz</span>
 </footer>
 <script src="assets/javascript.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>

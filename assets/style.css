@@ -8,9 +8,12 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     /* margin-bottom: 50px; */
+    /* opacity: 0.5; */
+    
 }
 .container{
     margin-bottom: 75px;
+   
 }
 .footer{
     position: absolute;
@@ -19,6 +22,11 @@ body{
     height: 50px;
     background-color: lightgray;
     text-align: center;
+}
+.jumbotron{
+    font-family: 'Francois One', sans-serif;
+    padding: 30px;
+   
 }
 
 .img-size{

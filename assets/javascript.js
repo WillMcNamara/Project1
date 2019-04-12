@@ -1,3 +1,5 @@
+
+$(document).ready(function(){
 $("#destination-searchBtn").on("click",function(){
     event.preventDefault();
     
@@ -8,4 +10,5 @@ $("#destination-searchBtn").on("click",function(){
 $("#restaurant-searchBtn").on("click",function(){
     event.preventDefault();
     
+});
 });
