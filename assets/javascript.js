@@ -1,10 +1,11 @@
-$("#search-submitBtn").on("click",function(){
+$("#destination-searchBtn").on("click",function(){
     event.preventDefault();
+    
 
 });
 
 
-$("#restaurant-submitBtn").on("click",function(){
+$("#restaurant-searchBtn").on("click",function(){
     event.preventDefault();
     
 });
