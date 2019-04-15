@@ -1,70 +1,3 @@
-// // Rickbranch
-
-
-
-// <form id="location-form">
-//     <label for="location-input">Enter Your Destination!</label>
-//     <input type="text" id="location-input"><br>
-
-
-//         <input id="add-location" type="submit" value="Add Your Beach!">
-
-//     </form>
-//         <div id="locations">
-
-//         </div>
-
-//         <div id="">
-//         </div>
-
-//         <br>
-
-//             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-//             <script type="text/javascript">
-
-//                 $("#add-location").on("click", function (event) {
-
-//                     event.preventDefault();
-
-//                 var location = $("#location-input").val().trim();
-
-//                 locations.push(location);
-
-//                 renderButtons(location);
-//             }
-
-//         function {
-//                     $("#locations").empty();
-
-//                 for (var i = 0; i < locations.length; i++) {
-//                 var location = locations[i]
-//                 $("#locations").append("<img>" + location + "</img>")
-
-//         }
-//         function renderImage(team) {
-//             var queryURL = "apidojo-booking-v1.p.rapidapi.com" + location + "&api_key=dc6zaTOxFJmzC&limit=10";
-//             $.ajax({
-//                     url: queryURL,
-// method: "GET"
-
-//             }).then(function (response) {
-//                     $("#hotels-appear-here").empty()
-//                 var results = response.data;
-
-//                 for (var i = 0; i < results.length; i++) {
-
-
-
-//                     $("#locations-appear-here").prepend(locations);
-
-
-
-//                 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-//                     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-//                 <script src="assets/javascript.js"></script>
-
-
 //Will branch
 function myMap() {
   var myLatlng = new google.maps.LatLng(40.0583, -74.4057);
@@ -180,9 +113,10 @@ $(document).ready(function(){
   
   $.ajax(settings).then(function(response){
     console.log(response);
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < 10; i++) {
       console.log(i);
       var newDiv = $("<div>");
+      newDiv.addClass("child");
       newDiv.append("Hotel: " + response.businesses[i].name + "<br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
       console.log(newDiv);
       $("#yelp").append(newDiv);
@@ -190,4 +124,57 @@ $(document).ready(function(){
   })
 
   })
+  //Pauly D Smacker
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyD1zlb07ZRZLvTDjEHtqncswpD5_ISELl8",
+            authDomain: "newproj-f2b5e.firebaseapp.com",
+            databaseURL: "https://newproj-f2b5e.firebaseio.com",
+            projectId: "newproj-f2b5e",
+            storageBucket: "newproj-f2b5e.appspot.com",
+            messagingSenderId: "122407998082"
+          };
+          firebase.initializeApp(config);
+
+        var database = firebase.database();
+
+        var paulCounter = 0;
+        var snookieCounter = 0;
+        var mikeCounter = 0;
+
+        $("#paul").on("click", function () {
+            paulCounter++;
+            database.ref().update({
+                paul: paulCounter
+            });
+        });
+
+        $("#snooki").on("click", function () {
+            snookieCounter++;
+            database.ref().update({
+                snookie: snookieCounter
+            });
+        });
+
+        $("#mike").on("click", function () {
+            mikeCounter++;
+            database.ref().update({
+                mike: mikeCounter
+            });
+        });
+
+        // Main Process
+        database.ref().on("value", function (snapshot) {
+            console.log(snapshot.val());
+            paulCounter = snapshot.val().paul;
+            $("#click-here").text(snapshot.val().paul);
+
+            snookieCounter = snapshot.val().snookie;
+            $("#click-here1").text(snapshot.val().snookie);
+
+            mikeCounter = snapshot.val().mike;
+            $("#click-here2").text(snapshot.val().mike);
+        }, function (errorObject) {
+            console.log("The read failed:" + errorObject.code)
+        });
 })
