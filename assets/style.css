@@ -32,3 +32,28 @@ body{
 .img-size{
     width: 100%
 }
+
+.location-row{
+    display:flex;
+    float:left;
+
+}
+#hotel0{
+        width:100px;
+        height:100px;
+        background: url(http://goo.gl/vyAs27) no-repeat scroll 0 0;
+
+}
+
+#hotel1{
+    width:100px;
+    height:100px;
+    background: url(http://goo.gl/vyAs27) no-repeat scroll 0 0;
+
+}
+#hotel2{
+    width:100px;
+    height:100px;
+    background: url(http://goo.gl/vyAs27) no-repeat scroll 0 0;
+
+}
