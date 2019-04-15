@@ -142,6 +142,8 @@ $(document).ready(function(){
               // get route from A to B
               calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
             
+
+              
             }
             
             
