@@ -191,4 +191,57 @@ $(document).ready(function(){
   })
 
   })
+  //Pauly D Smacker
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyD1zlb07ZRZLvTDjEHtqncswpD5_ISELl8",
+            authDomain: "newproj-f2b5e.firebaseapp.com",
+            databaseURL: "https://newproj-f2b5e.firebaseio.com",
+            projectId: "newproj-f2b5e",
+            storageBucket: "newproj-f2b5e.appspot.com",
+            messagingSenderId: "122407998082"
+          };
+          firebase.initializeApp(config);
+
+        var database = firebase.database();
+
+        var paulCounter = 0;
+        var snookieCounter = 0;
+        var mikeCounter = 0;
+
+        $("#paul").on("click", function () {
+            paulCounter++;
+            database.ref().update({
+                paul: paulCounter
+            });
+        });
+
+        $("#snooki").on("click", function () {
+            snookieCounter++;
+            database.ref().update({
+                snookie: snookieCounter
+            });
+        });
+
+        $("#mike").on("click", function () {
+            mikeCounter++;
+            database.ref().update({
+                mike: mikeCounter
+            });
+        });
+
+        // Main Process
+        database.ref().on("value", function (snapshot) {
+            console.log(snapshot.val());
+            paulCounter = snapshot.val().paul;
+            $("#click-here").text(snapshot.val().paul);
+
+            snookieCounter = snapshot.val().snookie;
+            $("#click-here1").text(snapshot.val().snookie);
+
+            mikeCounter = snapshot.val().mike;
+            $("#click-here2").text(snapshot.val().mike);
+        }, function (errorObject) {
+            console.log("The read failed:" + errorObject.code)
+        });
 })

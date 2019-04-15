@@ -74,55 +74,38 @@
                 </div> 
             </div>
         </div>
+    </div>
     
-   
-            <img src= "https://cdn.shopify.com/s/files/1/0023/6696/3812/products/Sticker_250x.jpg?v=1542588064" id="hi" width="150px" height= "200px">
-            <h1>Hit Pauly D</h1>
-            <h2>Ouch! I have been hit <span id="click-here"></span> times</h2>
-       
-</div>
-    
- 
-    
+    <div id='yelp'></div>
 
-<footer class="footer mt-auto py-3 bg-danger">
-        <span class="text-white">&#169; 2019 Team Situationz</span>
-        
-</footer>
+    <div class="row">
+        <div class="col-md-4">
+        <img src= "https://cdn.shopify.com/s/files/1/0023/6696/3812/products/Sticker_250x.jpg?v=1542588064" id="paul" width="150px" height= "200px">
+        <h1 class= "dj">Hit Pauly D</h1>
+        <h2 class ="dj">Ouch! I have been hit <span id="click-here"></span> times</h2>
+        </div>
+
+        <div class="col-md-4">
+            <img src= "https://media.nbcmiami.com/images/652*489/Snooki_640x480.jpg" id="snooki" width="150px" height= "200px">
+            <h1 class= "dj">Hit Snooki</h1>
+            <h2 class ="dj">Ouch! I have been hit <span id="click-here1"></span> times</h2>
+        </div>
+
+        <div class="col-md-4">
+            <img src= "https://specials-images.forbesimg.com/imageserve/976545622/960x0.jpg?fit=scale" id="mike" width="150px" height= "200px">
+            <h1 class= "dj">Hit The Situation</h1>
+            <h2 class ="dj">Ouch! I have been hit <span id="click-here2"></span> times</h2>
+        </div>
+    </div>
+
+    <footer class="footer mt-auto py-3 bg-danger">
+            <span class="text-white">&#169; 2019 Team Situationz</span>
+            
+    </footer>
+
 <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
 <script src="assets/javascript.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSIy69ZFze3YohnxsdisMinUBnct886_k&callback=myMap"></script>
    
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAP93iIpKW4fMEWVn5izECStvD_q0Lx6e4",
-            authDomain: "newproject-c5f98.firebaseapp.com",
-            databaseURL: "https://newproject-c5f98.firebaseio.com",
-            projectId: "newproject-c5f98",
-            storageBucket: "newproject-c5f98.appspot.com",
-            messagingSenderId: "265871115288"
-        };
-        firebase.initializeApp(config);
-
-        var database = firebase.database();
-        var clickCounter = 0;
-
-        $("#hi").on("click", function () {
-            clickCounter++;
-            database.ref().set({
-                clickCount: clickCounter
-            });
-        });
-
-        // Main Process
-        database.ref().on("value", function (snapshot) {
-            console.log(snapshot.val());
-            clickCounter = snapshot.val().clickCount;
-            $("#click-here").text(snapshot.val().clickCount);
-        }, function (errorObject) {
-            console.log("The read failed:" + errorObject.code)
-        });
-    </script>
 </body>
 </html>
