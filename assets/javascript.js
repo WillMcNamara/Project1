@@ -113,6 +113,7 @@ $(document).ready(function(){
   
   $.ajax(settings).then(function(response){
     console.log(response);
+    $("#yelp").empty();
     for (i = 0; i < 10; i++) {
       console.log(i);
       var newDiv = $("<div>");
