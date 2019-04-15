@@ -90,21 +90,21 @@
 
 
 <!-- Pauly D Smacker area-->
-    <div class="row bg-primary">
-        <div class="col-md-4 text-center my-3"">
-            <img src= "https://cdn.shopify.com/s/files/1/0023/6696/3812/products/Sticker_250x.jpg?v=1542588064" id="paul" width="150px" height= "200px">
+    <div class="row bg-light">
+        <div class="col-md-4 text-center my-3">
+            <img class="border border-dark rounded-circle" src= "https://cdn.shopify.com/s/files/1/0023/6696/3812/products/Sticker_250x.jpg?v=1542588064" id="paul" width="150px" height= "200px">
             <h1 class= "dj">Hit Pauly D</h1>
             <h2 class ="dj">Ouch! I have been hit <span id="click-here"></span> times</h2>
         </div>
 
         <div class="col-md-4 text-center my-3">
-            <img src= "https://media.nbcmiami.com/images/652*489/Snooki_640x480.jpg" id="snooki" width="150px" height= "200px">
+            <img class="border border-dark rounded-circle" src= "https://media.nbcmiami.com/images/652*489/Snooki_640x480.jpg" id="snooki" width="150px" height= "200px">
             <h1 class= "dj">Hit Snooki</h1>
             <h2 class ="dj">Ouch! I have been hit <span id="click-here1"></span> times</h2>
         </div>
 
         <div class="col-md-4 text-center my-3">
-            <img src= "https://specials-images.forbesimg.com/imageserve/976545622/960x0.jpg?fit=scale" id="mike" width="150px" height= "200px">
+            <img class="border border-dark rounded-circle" src= "https://specials-images.forbesimg.com/imageserve/976545622/960x0.jpg?fit=scale" id="mike" width="150px" height= "200px">
             <h1 class= "dj">Hit The Situation</h1>
             <h2 class ="dj">Ouch! I have been hit <span id="click-here2"></span> times</h2>
         </div>
@@ -164,6 +164,7 @@
                 var img_url = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
                 var newimg = $("<img>");
                 newimg.attr("src", img_url);
+                newimg.addClass("imgSize");
                 newimg.attr("alt", "weather image")
                 $("#search").empty();
                 
