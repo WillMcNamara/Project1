@@ -40,11 +40,18 @@ body{
 .parent{
   position: relative;
   height: 350px;
-  /* border: 1px solid black; */
-  overflow: hidden;}
+  border: 1px solid black;
+  overflow: hidden;
+  overflow-y: scroll;
+}
 .child{
 margin-top: 5px;
 height: 70px;   
  /* width: 318px; */
- overflow-y: scroll;
+ 
 }
+.dj {
+    font-family: 'Francois One', sans-serif;
+    color: white;
+    font-size:15px;
+};

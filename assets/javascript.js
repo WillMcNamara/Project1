@@ -52,10 +52,13 @@
 //                 for (var i = 0; i < results.length; i++) {
 
 
+//                     $("#locations-appear-here").prepend(locations);
 
 //                     $("#locations-appear-here").prepend(locations);
 
 
+//                 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+//                     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 //                 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 //                     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
