@@ -75,97 +75,97 @@ function myMap() {
   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
   var marker = new google.maps.Marker({
-      position: myLatlng,
-      title:"New Jersey"
+    position: myLatlng,
+    title: "New Jersey"
   });
-  
+
   marker.setMap(map);
-  }
-$(document).ready(function(){
+}
+$(document).ready(function () {
 
-//on click function for searching directions
+  //on click function for searching directions
 
-  $("#destination-searchBtn").on("click", function(){
+  $("#destination-searchBtn").on("click", function () {
 
     //grab info from google API
-    
+
     var destination = $("#destination-search").val();
-    
+
     // get user location
     navigator.geolocation.getCurrentPosition(showPosition);
     function showPosition(position) {
       var oriLat = position.coords.latitude
       var oriLng = position.coords.longitude
       var originCoord = new google.maps.LatLng(oriLat, oriLng);
-    
+
 
       var origin = oriLat + "," + oriLng;
       console.log(destination);
 
-      var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination +"&key=AIzaSyDSIy69ZFze3YohnxsdisMinUBnct886_k"
+      var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&key=AIzaSyDSIy69ZFze3YohnxsdisMinUBnct886_k"
       console.log(queryURL);
 
-        $.ajax ({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response){
-            
-            var desLat = response.routes[0].legs[0].end_location.lat
-            var desLng = response.routes[0].legs[0].end_location.lng
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (response) {
 
-            var destinationCoord = new google.maps.LatLng(desLat, desLng)
-            
-            //copied from stackoverflow
-            function initMap() {
-              var pointA = originCoord
-                pointB = destinationCoord
-                myOptions = {
-                  zoom: 7,
-                  center: pointA
-                },
-                map = new google.maps.Map(document.getElementById('map'), myOptions),
-                // Instantiate a directions service.
-                directionsService = new google.maps.DirectionsService,
-                directionsDisplay = new google.maps.DirectionsRenderer({
-                  map: map
-                }),
-                
-                markerB = new google.maps.Marker({
-                  position: pointB,
-                  title: "point B",
-                  label: "B",
-                  map: map
-                });
-            
-              // get route from A to B
-              calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
-            
+        var desLat = response.routes[0].legs[0].end_location.lat
+        var desLng = response.routes[0].legs[0].end_location.lng
+
+        var destinationCoord = new google.maps.LatLng(desLat, desLng)
+
+        //copied from stackoverflow
+        function initMap() {
+          var pointA = originCoord
+          pointB = destinationCoord
+          myOptions = {
+            zoom: 7,
+            center: pointA
+          },
+            map = new google.maps.Map(document.getElementById('map'), myOptions),
+            // Instantiate a directions service.
+            directionsService = new google.maps.DirectionsService,
+            directionsDisplay = new google.maps.DirectionsRenderer({
+              map: map
+            }),
+
+            markerB = new google.maps.Marker({
+              position: pointB,
+              title: "point B",
+              label: "B",
+              map: map
+            });
+
+          // get route from A to B
+          calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+
+        }
+
+
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+          directionsService.route({
+            origin: pointA,
+            destination: pointB,
+            travelMode: google.maps.TravelMode.DRIVING
+          }, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+              directionsDisplay.setDirections(response);
+            } else {
+              window.alert('Directions request failed due to ' + status);
             }
-            
-            
-            
-            function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
-              directionsService.route({
-                origin: pointA,
-                destination: pointB,
-                travelMode: google.maps.TravelMode.DRIVING
-              }, function(response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                  directionsDisplay.setDirections(response);
-                } else {
-                  window.alert('Directions request failed due to ' + status);
-                }
-              });
-            }
-            initMap();
-          
-        })
+          });
+        }
+        initMap();
+
+      })
     }
 
-//Yelp API call under same on click
+    //Yelp API call under same on click
 
-  var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotel&location=" + destination;
-  console.log(queryURL);
+    var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotel&location=" + destination;
+    console.log(queryURL);
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -177,17 +177,17 @@ $(document).ready(function(){
         "Postman-Token": "52ca0037-2032-418f-a1fc-e639ca18ccd4"
       }
     }
-  
-  $.ajax(settings).then(function(response){
-    console.log(response);
-    for (i = 0; i < 3; i++) {
-      console.log(i);
-      var newDiv = $("<div>");
-      newDiv.append("Hotel: " + response.businesses[i].name + "<br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
-      console.log(newDiv);
-      $("#yelp").append(newDiv);
-    }
-  })
+
+    $.ajax(settings).then(function (response) {
+      console.log(response);
+      for (i = 0; i < 3; i++) {
+        console.log(i);
+        var newDiv = $("<div>");
+        newDiv.append("Hotel: " + response.businesses[i].name + "<br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
+        console.log(newDiv);
+        $("#yelp").append(newDiv);
+      }
+    })
 
   })
 })
