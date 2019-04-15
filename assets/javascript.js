@@ -23,8 +23,25 @@ $(document).ready(function(){
   $("#destination-searchBtn").on("click", function(){
 
     //grab info from google API
-    
     destination = $("#destination-search").val();
+
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + destination + ",us&appid=7a1b3403d3345a747633446a6905bb5e";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+
+        var img_url = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
+        var newimg = $("<img>");
+        newimg.attr("src", img_url);
+        newimg.addClass("imgSize");
+        newimg.attr("alt", "weather image")
+        $("#search").empty();
+        $("#search").html("<img src='" + img_url + "' />");
+        $("#search").append("<p>" + response.name + ": " + response.weather[0].description + "</p>");
+       
+    });
     
     // get user location
     navigator.geolocation.getCurrentPosition(showPosition);
