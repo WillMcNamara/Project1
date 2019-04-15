@@ -83,13 +83,15 @@ function myMap() {
   }
 $(document).ready(function(){
 
+  var destination;
+
 //on click function for searching directions
 
   $("#destination-searchBtn").on("click", function(){
 
     //grab info from google API
     
-    var destination = $("#destination-search").val();
+    destination = $("#destination-search").val();
     
     // get user location
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -164,7 +166,7 @@ $(document).ready(function(){
 
 //Yelp API call under same on click
 
-  var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotel&location=" + destination;
+  var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotel&location=" + destination + "%20New%20Jersey";
   console.log(queryURL);
     var settings = {
       "async": true,
@@ -191,6 +193,37 @@ $(document).ready(function(){
     }
   })
 
+  //retaurant search
+  $("#restaurant-searchBtn").on("click", function(){
+    var resInput = $("#restaurant-search").val();
+    console.log(resInput);
+    var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurant%20" + resInput + "&location=" + destination + "%20New%20Jersey";
+    console.log(queryURL);
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": queryURL,
+      "method": "GET",
+      "headers": {
+        "Authorization": "Bearer b9Q7iP06Vu5-C_rzcbrIER4xuHcRcjdApNvPwaNWV940F-CDDwthU3038L4ssbtffIgSvOY7Ow3ROAVrOKHMP5Yt5mrC169Yg4wC-SS_Abu9_KlLgYdTS7sj3C6uXHYx",
+        "cache-control": "no-cache",
+        "Postman-Token": "52ca0037-2032-418f-a1fc-e639ca18ccd4"
+      }
+    }
+  
+  $.ajax(settings).then(function(response){
+    console.log(response);
+    $("#yelpRes").empty();
+    for (i = 0; i < 10; i++) {
+      console.log(i);
+      var newDiv = $("<div>");
+      newDiv.addClass("child");
+      newDiv.append("<a href='" + response.businesses[i].url + "'>Restaurant: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
+      console.log(newDiv);
+      $("#yelpRes").append(newDiv);
+    }
+  })
+})
   })
   //Pauly D Smacker
           // Initialize Firebase
