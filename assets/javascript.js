@@ -64,101 +64,127 @@
 
 //Will branch
 function myMap() {
-    var myLatlng = new google.maps.LatLng(40.0583, -74.4057);
-    var mapOptions = {
-      zoom: 10,
-      center: myLatlng
-    };
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  var myLatlng = new google.maps.LatLng(40.0583, -74.4057);
+  var mapOptions = {
+    zoom: 10,
+    center: myLatlng
+  };
+  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        title:"New Jersey"
-    });
-    
-    marker.setMap(map);
-    }
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      title:"New Jersey"
+  });
+  
+  marker.setMap(map);
+  }
 $(document).ready(function(){
 
 //on click function for searching directions
 
-$("#destination-searchBtn").on("click", function(){
+  $("#destination-searchBtn").on("click", function(){
 
-//grab info from google API
-
-// get user location somehow
-var origin = "philadelphia";
-// var destination = $("#destination-input").val();
-var destination = $("#destination-search").val();
-console.log(destination);
-
-var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=philadelphia&destination=" + destination +"&key=AIzaSyDSIy69ZFze3YohnxsdisMinUBnct886_k"
-console.log(queryURL);
-
-$.ajax ({
-    url: queryURL,
-    method: "GET"
-}).then(function(response){
-    console.log(response)
-    console.log(response.routes[0].legs[0].start_location.lat)
-    var oriLat = response.routes[0].legs[0].start_location.lat
-    var oriLng = response.routes[0].legs[0].start_location.lng
-    var desLat = response.routes[0].legs[0].end_location.lat
-    var desLng = response.routes[0].legs[0].end_location.lng
-
-    var originCoord = new google.maps.LatLng(oriLat, oriLng)
-    var destinationCoord = new google.maps.LatLng(desLat, desLng)
+    //grab info from google API
     
-    //copied from stackoverflow
-    function initMap() {
-      var pointA = originCoord
-        pointB = destinationCoord
-        myOptions = {
-          zoom: 7,
-          center: pointA
-        },
-        map = new google.maps.Map(document.getElementById('map'), myOptions),
-        // Instantiate a directions service.
-        directionsService = new google.maps.DirectionsService,
-        directionsDisplay = new google.maps.DirectionsRenderer({
-          map: map
-        }),
-        markerA = new google.maps.Marker({
-          position: pointA,
-          title: "point A",
-          label: "A",
-          map: map
-        }),
-        markerB = new google.maps.Marker({
-          position: pointB,
-          title: "point B",
-          label: "B",
-          map: map
-        });
+    var destination = $("#destination-search").val();
     
-      // get route from A to B
-      calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+    // get user location
+    navigator.geolocation.getCurrentPosition(showPosition);
+    function showPosition(position) {
+      var oriLat = position.coords.latitude
+      var oriLng = position.coords.longitude
+      var originCoord = new google.maps.LatLng(oriLat, oriLng);
     
+
+      var origin = oriLat + "," + oriLng;
+      console.log(destination);
+
+      var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination +"&key=AIzaSyDSIy69ZFze3YohnxsdisMinUBnct886_k"
+      console.log(queryURL);
+
+        $.ajax ({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response){
+            
+            var desLat = response.routes[0].legs[0].end_location.lat
+            var desLng = response.routes[0].legs[0].end_location.lng
+
+            var destinationCoord = new google.maps.LatLng(desLat, desLng)
+            
+            //copied from stackoverflow
+            function initMap() {
+              var pointA = originCoord
+                pointB = destinationCoord
+                myOptions = {
+                  zoom: 7,
+                  center: pointA
+                },
+                map = new google.maps.Map(document.getElementById('map'), myOptions),
+                // Instantiate a directions service.
+                directionsService = new google.maps.DirectionsService,
+                directionsDisplay = new google.maps.DirectionsRenderer({
+                  map: map
+                }),
+                
+                markerB = new google.maps.Marker({
+                  position: pointB,
+                  title: "point B",
+                  label: "B",
+                  map: map
+                });
+            
+              // get route from A to B
+              calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+            
+            }
+            
+            
+            
+            function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+              directionsService.route({
+                origin: pointA,
+                destination: pointB,
+                travelMode: google.maps.TravelMode.DRIVING
+              }, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                  directionsDisplay.setDirections(response);
+                } else {
+                  window.alert('Directions request failed due to ' + status);
+                }
+              });
+            }
+            initMap();
+          
+        })
     }
-    
-    
-    
-    function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
-      directionsService.route({
-        origin: pointA,
-        destination: pointB,
-        travelMode: google.maps.TravelMode.DRIVING
-      }, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setDirections(response);
-        } else {
-          window.alert('Directions request failed due to ' + status);
-        }
-      });
+
+//Yelp API call under same on click
+
+  var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotel&location=" + destination;
+  console.log(queryURL);
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": queryURL,
+      "method": "GET",
+      "headers": {
+        "Authorization": "Bearer b9Q7iP06Vu5-C_rzcbrIER4xuHcRcjdApNvPwaNWV940F-CDDwthU3038L4ssbtffIgSvOY7Ow3ROAVrOKHMP5Yt5mrC169Yg4wC-SS_Abu9_KlLgYdTS7sj3C6uXHYx",
+        "cache-control": "no-cache",
+        "Postman-Token": "52ca0037-2032-418f-a1fc-e639ca18ccd4"
+      }
     }
-    initMap();
   
-})
-})
-})
+  $.ajax(settings).then(function(response){
+    console.log(response);
+    for (i = 0; i < 3; i++) {
+      console.log(i);
+      var newDiv = $("<div>");
+      newDiv.append("Hotel: " + response.businesses[i].name + "<br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
+      console.log(newDiv);
+      $("#yelp").append(newDiv);
+    }
+  })
 
+  })
+})
