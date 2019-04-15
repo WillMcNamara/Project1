@@ -33,7 +33,6 @@ body{
     width: 100%
 }
 
-
 #yelp{
     height: 350px;
     margin: 0;
@@ -47,12 +46,14 @@ body{
 }
 .child{
 margin-top: 5px;
+height: 70px;   
+ 
  /* width: 318px; */
-}
 
+}
 .dj {
+    margin-top: 10px;
     font-family: 'Francois One', sans-serif;
-    color: white;
+    color: black;
     font-size:15px;
 };
-
