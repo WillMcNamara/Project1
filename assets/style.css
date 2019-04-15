@@ -46,8 +46,13 @@ body{
 }
 .child{
 margin-top: 5px;
+<<<<<<< HEAD
 height: 70px;   
  
+=======
+ /* width: 318px; */
+
+>>>>>>> eda9e139a18566b75b5c16d7a35a317b8c182035
 }
 .dj {
     margin-top: 10px;
