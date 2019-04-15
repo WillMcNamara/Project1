@@ -33,3 +33,18 @@ body{
     width: 100%
 }
 
+#yelp{
+    height: 350px;
+    margin: 0;
+}
+.parent{
+  position: relative;
+  height: 350px;
+  /* border: 1px solid black; */
+  overflow: hidden;}
+.child{
+margin-top: 5px;
+height: 70px;   
+ /* width: 318px; */
+ overflow-y: scroll;
+}

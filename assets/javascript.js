@@ -177,9 +177,10 @@ $(document).ready(function(){
   
   $.ajax(settings).then(function(response){
     console.log(response);
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < 10; i++) {
       console.log(i);
       var newDiv = $("<div>");
+      newDiv.addClass("child");
       newDiv.append("Hotel: " + response.businesses[i].name + "<br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
       console.log(newDiv);
       $("#yelp").append(newDiv);
