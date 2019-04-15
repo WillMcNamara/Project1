@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>JRZCHORE project</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -13,81 +15,91 @@
 </head>
 
 <body>
-   
     <header>
         <div class="jumbotron text-center bg-danger">
-            <h1 class="display-3 text-white">JRZCHORE</h1>
+            <h1 class="display-3 text-white">JRZCHORE </h1>
+            <div class="search-jawn" id="search"></div>
         </div>
+       
     </header>
     <!--End header area -->
 
-    
     <div class="container ">
         <div class="row py-3">
 
-        <!-- Destination search input-->
+            <!-- Destination search input-->
             <div class="col-md-5 ">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" id='destination-search' placeholder="Destination search" aria-label="destination-search" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" id='destination-search' placeholder="Destination search"
+                        aria-label="destination-search" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary bg-light" type="button" id="destination-searchBtn"><ion-icon name="search"></ion-icon></button>
+                        <button class="btn btn-outline-secondary bg-light" type="button" id="destination-searchBtn">
+                            <ion-icon name="search"></ion-icon>
+                        </button>
                     </div>
                 </div>
 
-         <!-- Location result will show up here -->
+
+                <!-- Location result will show up here -->
                 <div class="row">
                     <div id="location"></div>
                 </div>
-               
+
             </div>
 
-        <!-- Traffic map will show up here-->
+            <!-- Traffic map will show up here-->
             <div class="col-md-7">
-                    <div id="map" style="width:100%;height:400px;"></div>
-            </div> 
+                <div id="map" style="width:100%;height:400px;"></div>
+            </div>
         </div>
 
-       
+
 
         <div class="row ">
             <div class="col-md-7">
-            <!-- Traffic map will show up here-->
+                <!-- Traffic map will show up here-->
                 <div id="restaurant-display">
-                        <img src="assets/images/yelp.png" alt="yelp" class="img-size">
+                    <img src="assets/images/yelp.png" alt="yelp" class="img-size">
                 </div>
 
-            <!-- Restaurant will show up here -->
+                <!-- Restaurant will show up here -->
                 <div class="row">
-                        <div id="restaurant"></div>
+                    <div id="restaurant"></div>
                 </div>
 
-            </div> 
+            </div>
 
             <!-- Restaurant search input -->
             <div class="col-md-5 ">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Restaurant search" aria-label="restaurant-search" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" placeholder="Restaurant search"
+                        aria-label="restaurant-search" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary bg-light" type="button" id="restaurant-searchBtn"><ion-icon name="search"></ion-icon></button>   
+                        <button class="btn btn-outline-secondary bg-light" type="button" id="restaurant-searchBtn">
+                            <ion-icon name="search"></ion-icon>
+                        </button>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
     <div id="yelp"></div>
- 
-    <img src= "https://cdn.shopify.com/s/files/1/0023/6696/3812/products/Sticker_250x.jpg?v=1542588064" id="hi" width="150px" height= "200px">
-    <h1 class= "dj">Hit Pauly D</h1>
-    <h2 class ="dj">Ouch! I have been hit <span id="click-here"></span> times</h2>
+    <div id="weather-view"></div>
 
-<footer class="footer mt-auto py-3 bg-danger">
+    <img src="https://cdn.shopify.com/s/files/1/0023/6696/3812/products/Sticker_250x.jpg?v=1542588064" id="hi"
+        width="150px" height="200px">
+    <h1 class="dj">Hit Pauly D</h1>
+    <h2 class="dj">Ouch! I have been hit <span id="click-here"></span> times</h2>
+
+    <footer class="footer mt-auto py-3 bg-danger">
         <span class="text-white">&#169; 2019 Team Situationz</span>
-        
-</footer>
-<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
-<script src="assets/javascript.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSIy69ZFze3YohnxsdisMinUBnct886_k&callback=myMap"></script>
-   
+
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+    <script src="assets/javascript.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSIy69ZFze3YohnxsdisMinUBnct886_k&callback=myMap"></script>
+
     <script>
         // Initialize Firebase
         var config = {
@@ -110,6 +122,8 @@
             });
         });
 
+
+
         // Main Process
         database.ref().on("value", function (snapshot) {
             console.log(snapshot.val());
@@ -118,6 +132,63 @@
         }, function (errorObject) {
             console.log("The read failed:" + errorObject.code)
         });
+
+
+        $("#find-weather").on("click", function (event) {
+            event.preventDefault();
+
+
+
+            //make var newzip by taking in weather-input
+            var newzip = $("#destination-searchBtn").val().trim();
+
+            var queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=" + newzip + ",us&appid=7a1b3403d3345a747633446a6905bb5e";
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+                console.log(response.name);
+                console.log(response.weather);
+                $("#weather-view").text(JSON.stringify(response.name));
+                $("#weather-view").text(JSON.stringify(response.weather));
+            });
+
+            // -----------------------------------------------------------------------
+
+        });
+
+        $("#destination-searchBtn").on("click", function (event) {
+            event.preventDefault();
+
+
+
+            //make var newzip by taking in weather-input
+            var city = $("#destination-search").val().trim();
+
+            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + ",us&appid=7a1b3403d3345a747633446a6905bb5e";
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+
+                var img_url = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
+                var newimg = $("<img>");
+                newimg.attr("src", img_url);
+                newimg.attr("alt", "weather image")
+                $("#search").empty();
+                
+                $("#search").html("<img src='" + img_url + "' />");
+                $("#search").append("<p>" + response.name + "</p>");
+                $("#search").append("<p>" + response.weather[0].description + "</p>");
+            });
+
+            // -----------------------------------------------------------------------
+
+        });
     </script>
 </body>
+
 </html>
