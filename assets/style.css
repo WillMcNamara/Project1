@@ -44,7 +44,7 @@ body{
   overflow: hidden;
   overflow-y: scroll;
 }
-/* .child{
+.child{
 position: relative;
 margin-top: 5px;
 height: 100px; 
@@ -57,7 +57,7 @@ font-size: 14px;
     right: 0;
     top: 0;
     position: absolute;
-} */
+}
 .dj {
     margin-top: 10px;
     font-family: 'Francois One', sans-serif;
