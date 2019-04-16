@@ -14,18 +14,54 @@ function myMap() {
   
   marker.setMap(map);
   }
+
 $(document).ready(function(){
 
   //establish destination variable used in search functions 
   var destination;
 
-  //on click function for searching directions
+  //on click function for searching directions and finding
   $("#destination-searchBtn").on("click", function(){
     event.preventDefault();
 
-    //grab info from google API
+    //array for map markers
+    var markers = [];
+    var markersCoor = [];
+
     destination = $("#destination-search").val();
+
+  var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotel&location=" + destination + "%20New%20Jersey";
+  console.log(queryURL);
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": queryURL,
+      "method": "GET",
+      "headers": {
+        "Authorization": "Bearer b9Q7iP06Vu5-C_rzcbrIER4xuHcRcjdApNvPwaNWV940F-CDDwthU3038L4ssbtffIgSvOY7Ow3ROAVrOKHMP5Yt5mrC169Yg4wC-SS_Abu9_KlLgYdTS7sj3C6uXHYx",
+        "cache-control": "no-cache",
+        "Postman-Token": "52ca0037-2032-418f-a1fc-e639ca18ccd4"
+      }
+    }
+  
+  $.ajax(settings).then(function(response){
+    console.log(response);
+    $("#yelp").empty();
+    for (i = 0; i < 10; i++) {
+      
+      var newMarkerCoor = new google.maps.LatLng(response.businesses[i].coordinates.latitude, response.businesses[i].coordinates.longitude);
+      
+      markersCoor.push(newMarkerCoor);
+      markers.push(i);
+      console.log(markers);
+      var newDiv = $("<div>");
+      newDiv.addClass("child");
+      newDiv.append("<img style='height:70px;width:100px;' src=" + response.businesses[i].image_url + ">" +"<a href='" + response.businesses[i].url + "'>Hotel " + (i + 1) + ": " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
+      $("#yelp").append(newDiv);
+    }
+  })
     
+    //grab info from google API    
     // get user location
     navigator.geolocation.getCurrentPosition(showPosition);
     function showPosition(position) {
@@ -37,7 +73,7 @@ $(document).ready(function(){
       var origin = oriLat + "," + oriLng;
       console.log(destination);
 
-      var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination +"&key=AIzaSyDSIy69ZFze3YohnxsdisMinUBnct886_k"
+      var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "%20New%20Jersey&key=AIzaSyDSIy69ZFze3YohnxsdisMinUBnct886_k"
       console.log(queryURL);
 
         $.ajax ({
@@ -71,6 +107,15 @@ $(document).ready(function(){
                   label: "B",
                   map: map
                 });
+
+                for (i = 0; i < 10; i++){
+                  markers[i] = new google.maps.Marker({
+                    position: markersCoor[i],
+                    title: "Hotel " + (i + 1),
+                    label: "H" + (i + 1),
+                    map: map
+                  })
+                }
             
               // get route from A to B
               calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
@@ -78,9 +123,7 @@ $(document).ready(function(){
 
               
             }
-            
-            
-            
+             
             function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
               directionsService.route({
                 origin: pointA,
@@ -120,35 +163,6 @@ $(document).ready(function(){
           $("#search").html("<img src='" + img_url + " ' />" + farenheit + " F");
           $("#search").append("<p>" + response.name + ": " + response.weather[0].description + "</p>");
       });
-
-//Yelp API call under same on click
-
-  var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotel&location=" + destination + "%20New%20Jersey";
-  console.log(queryURL);
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": queryURL,
-      "method": "GET",
-      "headers": {
-        "Authorization": "Bearer b9Q7iP06Vu5-C_rzcbrIER4xuHcRcjdApNvPwaNWV940F-CDDwthU3038L4ssbtffIgSvOY7Ow3ROAVrOKHMP5Yt5mrC169Yg4wC-SS_Abu9_KlLgYdTS7sj3C6uXHYx",
-        "cache-control": "no-cache",
-        "Postman-Token": "52ca0037-2032-418f-a1fc-e639ca18ccd4"
-      }
-    }
-  
-  $.ajax(settings).then(function(response){
-    console.log(response);
-    $("#yelp").empty();
-    for (i = 0; i < 10; i++) {
-      console.log(i);
-      var newDiv = $("<div>");
-      newDiv.addClass("child");
-      newDiv.append("<img style='height:100px;width:150px;' src=" + response.businesses[i].image_url + ">" +"<a href='" + response.businesses[i].url + "'>Hotel: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
-      console.log(newDiv);
-      $("#yelp").append(newDiv);
-    }
-  })
 
   //retaurant search
   $("#restaurant-searchBtn").on("click", function(){
