@@ -50,7 +50,9 @@ margin-top: 5px;
 height: 100px; 
 font-size: 14px;  
 }
-
+.textGroup{
+    width: 60%;
+}
 .child img{
     right: 0;
     top: 0;

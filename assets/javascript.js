@@ -144,7 +144,7 @@ $(document).ready(function(){
       console.log(i);
       var newDiv = $("<div>");
       newDiv.addClass("child");
-      newDiv.append("<img style='height:100px;width:150px;' src=" + response.businesses[i].image_url + ">" +"<a href='" + response.businesses[i].url + "'>Hotel: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
+      newDiv.append("<div class='textGroup'><a href='" + response.businesses[i].url + "'>Hotel: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price + "</div>" + "<img style='height:100px;width:150px;' src=" + response.businesses[i].image_url + ">");
       console.log(newDiv);
       $("#yelp").append(newDiv);
     }
@@ -175,8 +175,7 @@ $(document).ready(function(){
       console.log(i);
       var newDiv = $("<div>");
       newDiv.addClass("child");
-      newDiv.append("<a href='" + response.businesses[i].url + "'>Restaurant: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
-      newDiv.append("<div>"+"<img style='height:100px;width:150px;' src=" + response.businesses[i].image_url + ">"+"</div>");
+      newDiv.append("<div class='textGroup'><a href='" + response.businesses[i].url + "'>Restaurant: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price + "</div>" +"<img style='height:100px;width:150px;' src=" + response.businesses[i].image_url + ">"+"</div>");
       console.log(newDiv);
       $("#yelpRes").append(newDiv);
       
