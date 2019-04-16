@@ -8,7 +8,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 50px;
-    /* opacity: 0.5; */
+    
     
 }
 .container{
@@ -27,6 +27,7 @@ body{
 .jumbotron{
     font-family: 'Francois One', sans-serif;
     padding: 30px; 
+    /* opacity: 0.5; */
 }
 
 .img-size{
@@ -40,23 +41,36 @@ body{
 .parent{
   position: relative;
   height: 350px;
-  /* border: 1px solid black; */
   overflow: hidden;
   overflow-y: scroll;
 }
 .child{
+position: relative;
 margin-top: 5px;
-<<<<<<< HEAD
-height: 70px;   
- 
-=======
- /* width: 318px; */
+height: 100px; 
+font-size: 14px;  
 
->>>>>>> eda9e139a18566b75b5c16d7a35a317b8c182035
+}
+.child img{
+    right: 0;
+    top: 0;
+    position: absolute;
 }
 .dj {
     margin-top: 10px;
     font-family: 'Francois One', sans-serif;
-    color: white;
+    color: black;
     font-size:15px;
-};
+}
+a{
+    font-weight: 600;
+    color: black;
+}
+.search-jawn{
+    font-size: 20px;
+    letter-spacing: 1.5px;
+}
+.search-jawn img{
+    width: 6%;
+    height: auto;
+}

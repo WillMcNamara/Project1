@@ -31,7 +31,7 @@
         <div class="row py-3 my-3 bg-light">
 
             <!-- Destination search input-->
-            <div class="col-md-5 ">
+            <div class="col-md-5 mb-3">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" id='destination-search' placeholder="City search"
                         aria-label="destination-search" aria-describedby="button-addon2">
@@ -61,23 +61,17 @@
 
         <!-- Yelp serch start here -->
         <div class="row py-3 my-3 bg-light">
-            <div class="col-md-7 ">
+            <div class="col-md-7 mb-3">
                 <!-- Yelp display will show up here-->
                 <div id="restaurant-display">
                     <img src="assets/images/yelp.png" alt="yelp" class="img-size">
                 </div>
-
-                <!-- Restaurant will show up here -->
-                <div class="row">
-                    <div id="restaurant"></div>
-                </div>
-
             </div>
 
             <!-- Restaurant search input -->
             <div class="col-md-5 ">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Restaurant search"
+                    <input type="text" id="restaurant-search" class="form-control" placeholder="Restaurant search"
                         aria-label="restaurant-search" aria-describedby="button-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary bg-light" type="button" id="restaurant-searchBtn">
@@ -85,87 +79,59 @@
                         </button>
                     </div>
                 </div>
+                <!-- restaurant result will show up here -->
+                <div class="parent">
+                    <div id="yelpRes"></div>
+                </div>
             </div>
         </div>
         <!-- Yelp search end here -->
 
 
+
         <!-- Pauly D Smacker area-->
-        <div class="row bg-primary">
-            <div class="col-md-4 text-center my-3"">
-            <img src= " https://cdn.shopify.com/s/files/1/0023/6696/3812/products/Sticker_250x.jpg?v=1542588064"
-                id="paul" width="150px" height="200px">
+        <div class="row bg-light">
+            <div class="col-md-4 text-center my-3">
+                <img class="border border-dark rounded-circle"
+                    src="https://cdn.shopify.com/s/files/1/0023/6696/3812/products/Sticker_250x.jpg?v=1542588064"
+                    id="paul" width="150px" height="200px">
                 <h1 class="dj">Hit Pauly D</h1>
                 <h2 class="dj">Ouch! I have been hit <span id="click-here"></span> times</h2>
             </div>
+
             <div class="col-md-4 text-center my-3">
-                <img src="https://media.nbcmiami.com/images/652*489/Snooki_640x480.jpg" id="snooki" width="150px"
+                <img class="border border-dark rounded-circle"
+                    src="https://media.nbcmiami.com/images/652*489/Snooki_640x480.jpg" id="snooki" width="150px"
                     height="200px">
                 <h1 class="dj">Hit Snooki</h1>
                 <h2 class="dj">Ouch! I have been hit <span id="click-here1"></span> times</h2>
             </div>
+
             <div class="col-md-4 text-center my-3">
-                <img src="https://specials-images.forbesimg.com/imageserve/976545622/960x0.jpg?fit=scale" id="mike"
+                <img class="border border-dark rounded-circle"
+                    src="https://specials-images.forbesimg.com/imageserve/976545622/960x0.jpg?fit=scale" id="mike"
                     width="150px" height="200px">
                 <h1 class="dj">Hit The Situation</h1>
                 <h2 class="dj">Ouch! I have been hit <span id="click-here2"></span> times</h2>
+
             </div>
         </div>
         <!-- Pauly D Smacker end here -->
+
+
     </div>
+
     <!-- Footer area -->
     <footer class="footer mt-auto py-3 bg-danger">
         <span class="text-white">&#169; 2019 Team Situationz</span>
+
     </footer>
-    <!-- Footer end here -->
-    <script>
-        $("#find-weather").on("click", function (event) {
-            event.preventDefault();
-            //make var newzip by taking in weather-input
-            var newzip = $("#destination-searchBtn").val().trim();
-            var queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=" + newzip + ",us&appid=7a1b3403d3345a747633446a6905bb5e";
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function (response) {
-                console.log(response);
-                console.log(response.name);
-                console.log(response.weather);
-                $("#weather-view").text(JSON.stringify(response.name));
-                $("#weather-view").text(JSON.stringify(response.weather));
-            });
-            // -----------------------------------------------------------------------
-        });
-        $("#destination-searchBtn").on("click", function (event) {
-            event.preventDefault();
-            //make var newzip by taking in weather-input
-            var city = $("#destination-search").val().trim();
-            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + ",us&appid=7a1b3403d3345a747633446a6905bb5e";
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function (response) {
-                var img_url = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
-                var newimg = $("<img>");
-                newimg.attr("src", img_url);
-                newimg.attr("alt", "weather image")
-                $("#search").empty();
-
-                $("#search").html("<img src='" + img_url + "' />");
-                $("#search").append("<p>" + response.name + "</p>");
-                $("#search").append("<p>" + response.weather[0].description + "</p>");
-            });
-
-            // -----------------------------------------------------------------------
-
-        });
-    </script>
 
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
     <script src="assets/javascript.js"></script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSIy69ZFze3YohnxsdisMinUBnct886_k&callback=myMap"></script>
-
+    <script src="assets/weather.js"></script>
 </body>
 
 </html>
