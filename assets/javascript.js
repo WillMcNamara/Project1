@@ -188,8 +188,8 @@ $(document).ready(function(){
     for (i = 0; i < 10; i++) {
       console.log(i);
       var newDiv = $("<div>");
-      newDiv.addClass("row");
-      newDiv.append("<div class='col-md-8'><a href='" + response.businesses[i].url + "'>Restaurant: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price + "</div><img class='col-md-4' style='height:70px;width:100px;' src=" + response.businesses[i].image_url + ">");
+      newDiv.addClass("child");
+      newDiv.append("<div class='textGroup'><a href='" + response.businesses[i].url + "'>Restaurant: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price + "</div>" +"<img style='height:100px;width:150px;' src=" + response.businesses[i].image_url + ">"+"</div>");
       console.log(newDiv);
       $("#yelpRes").append(newDiv);
       
