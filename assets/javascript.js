@@ -145,7 +145,7 @@ $(document).ready(function(){
   
       //make var newzip by taking in weather-input
   
-      var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + destination + ",us&appid=7a1b3403d3345a747633446a6905bb5e";
+      var queryURL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=" + destination + ",us&appid=7a1b3403d3345a747633446a6905bb5e";
   
       $.ajax({
           url: queryURL,
