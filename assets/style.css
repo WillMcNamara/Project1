@@ -47,8 +47,8 @@ body{
 .child{
 position: relative;
 margin-top: 5px;
-height: 70px; 
-font-size: 16px;  
+height: 100px; 
+font-size: 14px;  
 
 }
 .child img{
