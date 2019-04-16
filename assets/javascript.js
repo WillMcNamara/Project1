@@ -1,71 +1,4 @@
-// // Rickbranch
-
-
-// <form id="location-form">
-//     <label for="location-input">Enter Your Destination!</label>
-//     <input type="text" id="location-input"><br>
-
-//         <input id="add-location" type="submit" value="Add Your Beach!">
-
-//     </form>
-//         <div id="locations">
-
-//         </div>
-
-//         <div id="">
-//         </div>
-
-//         <br>
-
-//             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-//             <script type="text/javascript">
-
-//                 $("#add-location").on("click", function (event) {
-
-//                     event.preventDefault();
-
-//                 var location = $("#location-input").val().trim();
-
-//                 locations.push(location);
-
-//                 renderButtons(location);
-//             }
-
-//         function {
-//                     $("#locations").empty();
-
-//                 for (var i = 0; i < locations.length; i++) {
-//                 var location = locations[i]
-//                 $("#locations").append("<img>" + location + "</img>")
-
-//         }
-//         function renderImage(team) {
-//             var queryURL = "apidojo-booking-v1.p.rapidapi.com" + location + "&api_key=dc6zaTOxFJmzC&limit=10";
-//             $.ajax({
-//                     url: queryURL,
-// method: "GET"
-
-//             }).then(function (response) {
-//                     $("#hotels-appear-here").empty()
-//                 var results = response.data;
-
-//                 for (var i = 0; i < results.length; i++) {
-
-
-//                     $("#locations-appear-here").prepend(locations);
-
-//                     $("#locations-appear-here").prepend(locations);
-
-
-//                 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-//                     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-//                 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-//                     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-//                 <script src="assets/javascript.js"></script>
-
-//Will branch
+//Make map centered on New Jersey on page load
 function myMap() {
   var myLatlng = new google.maps.LatLng(40.0583, -74.4057);
   var mapOptions = {
@@ -83,32 +16,15 @@ function myMap() {
   }
 $(document).ready(function(){
 
+  //establish destination variable used in search functions 
   var destination;
 
-//on click function for searching directions
-
+  //on click function for searching directions
   $("#destination-searchBtn").on("click", function(){
+    event.preventDefault();
 
     //grab info from google API
     destination = $("#destination-search").val();
-
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + destination + ",us&appid=7a1b3403d3345a747633446a6905bb5e";
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-
-        var img_url = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
-        var newimg = $("<img>");
-        newimg.attr("src", img_url);
-        newimg.addClass("imgSize");
-        newimg.attr("alt", "weather image")
-        $("#search").empty();
-        $("#search").html("<img src='" + img_url + "' />");
-        $("#search").append("<p>" + response.name + ": " + response.weather[0].description + "</p>");
-       
-    });
     
     // get user location
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -134,7 +50,7 @@ $(document).ready(function(){
 
             var destinationCoord = new google.maps.LatLng(desLat, desLng)
             
-            //copied from stackoverflow
+            //new map with directions on it
             function initMap() {
               var pointA = originCoord
                 pointB = destinationCoord
@@ -182,6 +98,28 @@ $(document).ready(function(){
           
         })
     }
+//Weather req on same click
+  
+      //make var newzip by taking in weather-input
+  
+      var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + destination + ",us&appid=7a1b3403d3345a747633446a6905bb5e";
+  
+      $.ajax({
+          url: queryURL,
+          method: "GET"
+      }).then(function (response) {
+  
+          var img_url = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
+          var newimg = $("<img>");
+          var kelvin = response.main.temp;
+          var farenheit = Math.floor((kelvin - 273.15) * (9 / 5) + 32);
+          newimg.attr("src", img_url);
+          newimg.attr("alt", "weather image")
+          $("#search").empty();
+  
+          $("#search").html("<img src='" + img_url + " ' />" + farenheit + " F");
+          $("#search").append("<p>" + response.name + ": " + response.weather[0].description + "</p>");
+      });
 
 //Yelp API call under same on click
 
