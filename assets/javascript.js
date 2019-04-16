@@ -55,8 +55,8 @@ $(document).ready(function(){
       markers.push(i);
       console.log(markers);
       var newDiv = $("<div>");
-      newDiv.addClass("child");
-      newDiv.append("<img style='height:70px;width:100px;' src=" + response.businesses[i].image_url + ">" +"<a href='" + response.businesses[i].url + "'>Hotel " + (i + 1) + ": " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
+      newDiv.addClass("row");
+      newDiv.append("<div class='col-md-8'><a href='" + response.businesses[i].url + "'>Hotel " + (i + 1) + ": " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price + "</div><img class='col-md-4' style='height:70px;width:100px;' src=" + response.businesses[i].image_url + ">");
       $("#yelp").append(newDiv);
     }
   })
@@ -188,8 +188,8 @@ $(document).ready(function(){
     for (i = 0; i < 10; i++) {
       console.log(i);
       var newDiv = $("<div>");
-      newDiv.addClass("child");
-      newDiv.append("<a href='" + response.businesses[i].url + "'>Restaurant: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price + "<img style='height:70px;width:100px;' src=" + response.businesses[i].image_url + ">");
+      newDiv.addClass("row");
+      newDiv.append("<div class='col-md-8'><a href='" + response.businesses[i].url + "'>Restaurant: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price + "</div><img class='col-md-4' style='height:70px;width:100px;' src=" + response.businesses[i].image_url + ">");
       console.log(newDiv);
       $("#yelpRes").append(newDiv);
       
