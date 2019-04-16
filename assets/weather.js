@@ -46,10 +46,10 @@ $("#destination-searchBtn").on("click", function (event) {
         newimg.attr("alt", "weather image")
         $("#search").empty();
 
-        $("#search").html("<img src='" + img_url + "' />");
-        $("#search").append("<p>" + response.name + "</p>");
-        $("#search").append("<p>" + response.weather[0].description + "</p>");
-        $("#search").append("<p>"+ "Current Temperature: " + farenheit + "F" +" <p>");
+        $("#search").html("<img src='" + img_url + " ' />" + farenheit + " F");
+        $("#search").append("<p>" + response.name + ": " + response.weather[0].description + "</p>");
+        // $("#search").append("<p>" + response.weather[0].description + "</p>");
+        // $("#search").append("<p>"+ "Current Temperature: " + farenheit + "F" +" <p>");
 
     });
 
