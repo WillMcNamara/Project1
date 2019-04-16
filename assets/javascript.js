@@ -175,7 +175,8 @@ $(document).ready(function(){
       console.log(i);
       var newDiv = $("<div>");
       newDiv.addClass("child");
-      newDiv.append("<a href='" + response.businesses[i].url + "'>Restaurant: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price + "<img style='height:100px;width:150px;' src=" + response.businesses[i].image_url + ">");
+      newDiv.append("<a href='" + response.businesses[i].url + "'>Restaurant: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price);
+      newDiv.append("<div>"+"<img style='height:100px;width:150px;' src=" + response.businesses[i].image_url + ">"+"</div>");
       console.log(newDiv);
       $("#yelpRes").append(newDiv);
       
