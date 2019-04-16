@@ -164,6 +164,35 @@ $(document).ready(function(){
           $("#search").append("<p>" + response.name + ": " + response.weather[0].description + "</p>");
       });
 
+//Yelp API call under same on click
+
+  var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=hotel&location=" + destination + "%20New%20Jersey";
+  console.log(queryURL);
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": queryURL,
+      "method": "GET",
+      "headers": {
+        "Authorization": "Bearer b9Q7iP06Vu5-C_rzcbrIER4xuHcRcjdApNvPwaNWV940F-CDDwthU3038L4ssbtffIgSvOY7Ow3ROAVrOKHMP5Yt5mrC169Yg4wC-SS_Abu9_KlLgYdTS7sj3C6uXHYx",
+        "cache-control": "no-cache",
+        "Postman-Token": "52ca0037-2032-418f-a1fc-e639ca18ccd4"
+      }
+    }
+  
+  $.ajax(settings).then(function(response){
+    console.log(response);
+    $("#yelp").empty();
+    for (i = 0; i < 10; i++) {
+      console.log(i);
+      var newDiv = $("<div>");
+      newDiv.addClass("child");
+      newDiv.append("<div class='textGroup'><a href='" + response.businesses[i].url + "'>Hotel: " + response.businesses[i].name + "</a><br>Rating: " + response.businesses[i].rating + "<br>Cost: " + response.businesses[i].price + "</div>" + "<img style='height:100px;width:150px;' src=" + response.businesses[i].image_url + ">");
+      console.log(newDiv);
+      $("#yelp").append(newDiv);
+    }
+  })
+
   //retaurant search
   $("#restaurant-searchBtn").on("click", function(){
     var resInput = $("#restaurant-search").val();
@@ -250,4 +279,6 @@ $(document).ready(function(){
         }, function (errorObject) {
             console.log("The read failed:" + errorObject.code)
         });
+
+        
 })
